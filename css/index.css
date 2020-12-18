@@ -27,7 +27,56 @@ body {
 }
 
 .container {
+    display:flex;    
     width: 80%;
-    height: 200px;
-    border: 1px solid black;
+    padding:15px; 
+    box-sizing: border-box;   
+    
+    background-color:white;
+}
+.data-container{
+    display: flex;
+    flex-direction: column;
+    border: 1px red solid;
+    justify-content: center;
+    align-items: flex-start;
+    justify-content: space-evenly;  
+    width: 20%;  
+    
+}
+.image-container{
+    width: 10%;
+}
+
+.filter-container{
+    border: 1px red solid;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap :15px;
+    width: 70%;
+}
+.filter-container div{
+    color:#5BA4A4  ;
+    background-color: #EFFAFA ;
+    padding:10px;
+    font-weight: bold;
+    width: max-content;
+}
+.company-name{
+    font-weight: bold;
+    font-size:0.8em;
+    color: #5BA4A4;
+}
+.job-request{
+    font-weight: bold;
+}
+.job-details{
+    font-weight: lighter;
+    font-size: 0.9em;
+    color: lightgrey;
+}
+
+@media (max-width: 375px){
+    
 }
