@@ -26,12 +26,18 @@ body {
     background-size: cover;
 }
 
-.container {
-    display:flex;    
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.job-container {
+    display:flex; 
+    
     width: 80%;
     padding:15px; 
-    box-sizing: border-box;   
-    
+    box-sizing: border-box;    
     background-color:white;
 }
 .data-container{
