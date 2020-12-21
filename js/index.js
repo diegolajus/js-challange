@@ -1,4 +1,5 @@
 (() => {
+    
 
     const filters = [
         'Frontend',
@@ -22,7 +23,7 @@
                 { workingDay: 'Full Time' },
                 { location: 'USA Only' }
             ],
-            filters: [" Front End ", " Senior ", " HTML ", " CSS ", " Javascript "],
+            filters: ["Frontend", "Senior", "HTML", "CSS", "Javascript"],
             companyLogo: './images/photosnap.svg'
         },
 
@@ -34,7 +35,7 @@
                 { workingDay: 'Part Time' },
                 { location: 'Remote' }
             ],
-            filters: [" Front End ", " Senior ", " HTML ", " CSS ", " Javascript "],
+            filters: ["Frontend", "Senior", "HTML", "CSS", "Javascript"],
             companyLogo: './images/manage.svg'
         },
 
@@ -46,7 +47,7 @@
                 { workingDay: 'Part Time' },
                 { location: 'USA Only' }
             ],
-            filters: [" Front End ", " Senior ", " HTML ", " CSS ", " Javascript "],
+            filters: ["Frontend", "Senior", "HTML", "CSS", "Javascript"],
             companyLogo: './images/account.svg'
         },
 
@@ -58,7 +59,7 @@
                 { workingDay: 'Contract' },
                 { location: 'USA Only' }
             ],
-            filters: [" Front End ", " Senior ", " HTML ", " CSS ", " Javascript "],
+            filters: ["Frontend", "Senior", "HTML", "CSS", "Javascript"],
             companyLogo: './images/myhome.svg'
         },
 
@@ -70,11 +71,14 @@
                 { workingDay: 'Full Time' },
                 { location: 'WorldWide' }
             ],
-            filters: [" Front End ", " Senior ", " HTML ", " CSS ", " Javascript "],
+            filters: ["Frontend", "Senior", "HTML", "CSS", "Javascript"],
             companyLogo: './images/loop-studios.svg'
         }
     ];
+    let filtresActius = [];
 
+
+    
     const createNewElement = (type, content, attr, value) => {
 
         const newElement = document.createElement(type);
@@ -105,37 +109,75 @@
         return newElement;
     }
 
-    filters.forEach(filter => {
+
+    // crear map perk ens crea una array y ens retorna unaltra array
+    // bucle de filtres y ofertes, aquelles on coincideixi oferta y filtre, amb un return safegirá al new array
+    // hint : filter()
+
+    function renderOffers(){
+        const newArray = filtresActius.map()
+        jobOffers.forEach((offer, index) => {
+            const jobsContainer = document.querySelector('#jobs-container')
+            jobsContainer.append(createNewElement('DIV', null, 'class', 'job-container'));
+            const jobContainer = document.querySelectorAll('.job-container')
+            const thisJobContainer = jobContainer[index]
+            thisJobContainer.appendChild(createNewElement('DIV', null, 'class', 'image-container'));
+            const imageContainer = document.querySelectorAll('.image-container');
+            const thisImageContainer = imageContainer[index];
+            thisImageContainer.appendChild(createNewElement('IMG', null, 'src', offer.companyLogo))
+            thisJobContainer.appendChild(createNewElement('DIV', null, 'class', 'data-container'));
+            const dataContainer = document.querySelectorAll('.data-container')
+            const thisDataContainer = dataContainer[index]
+            thisDataContainer.appendChild(createNewElement('DIV', offer.companyName, 'class', 'company-name'));
+            thisDataContainer.append(createNewElement('DIV', offer.jobName, 'class', 'job-request'));
+            thisDataContainer.append(createNewElement('DIV', offer.details, 'class', 'job-details')); 
+            thisJobContainer.append(createNewElement('DIV', null, 'class', 'filter-container'));
+            const filterContainer = document.querySelectorAll('.filter-container');
+            const thisFilterContainer = filterContainer[index];
+            offer.filters.forEach(filter => {
+                thisFilterContainer.appendChild(createNewElement('DIV', filter, 'class', 'filter-container-div'));
+            });
+        });
+
+    }
+    filters.forEach((filter, index) => {
         const filterMenu = document.querySelector('#filter-menu');
         filterMenu.appendChild(createNewElement('DIV', filter, 'class', 'filter-container-div'));
-    });
 
-    
+        const filterSelection = document.querySelectorAll(".filter-container-div")
 
-    jobOffers.forEach((offer, index) => {
-        const jobsContainer = document.querySelector('#jobs-container')
-        jobsContainer.append(createNewElement('DIV', null, 'class', 'job-container'));
-        const jobContainer = document.querySelectorAll('.job-container')
-        const thisJobContainer = jobContainer[index]
-        thisJobContainer.appendChild(createNewElement('DIV', null, 'class', 'image-container'));
-        const imageContainer = document.querySelectorAll('.image-container');
-        const thisImageContainer = imageContainer[index];
-        thisImageContainer.appendChild(createNewElement('IMG', null, 'src', offer.companyLogo))
-        thisJobContainer.appendChild(createNewElement('DIV', null, 'class', 'data-container'));
-        const dataContainer = document.querySelectorAll('.data-container')
-        const thisDataContainer = dataContainer[index]
-        thisDataContainer.appendChild(createNewElement('DIV', offer.companyName, 'class', 'company-name'));
-        thisDataContainer.append(createNewElement('DIV', offer.jobName, 'class', 'job-request'));
-        thisDataContainer.append(createNewElement('DIV', offer.details, 'class', 'job-details')); 
-        thisJobContainer.append(createNewElement('DIV', null, 'class', 'filter-container'));
-        const filterContainer = document.querySelectorAll('.filter-container');
-        const thisFilterContainer = filterContainer[index];
-        offer.filters.forEach(filter => {
-            thisFilterContainer.appendChild(createNewElement('DIV', filter, 'class', 'filter-container-div'));
+        const thisFilterSelection  = filterSelection[index]
+
+        thisFilterSelection.addEventListener("click",function(){
+            filtresActius.push(thisFilterSelection.innerHTML)
+            renderOffers()
         });
+        
+    
     });
 
-
+    // jobOffers.forEach((offer, index) => {
+    //     const jobsContainer = document.querySelector('#jobs-container')
+    //     jobsContainer.append(createNewElement('DIV', null, 'class', 'job-container'));
+    //     const jobContainer = document.querySelectorAll('.job-container')
+    //     const thisJobContainer = jobContainer[index]
+    //     thisJobContainer.appendChild(createNewElement('DIV', null, 'class', 'image-container'));
+    //     const imageContainer = document.querySelectorAll('.image-container');
+    //     const thisImageContainer = imageContainer[index];
+    //     thisImageContainer.appendChild(createNewElement('IMG', null, 'src', offer.companyLogo))
+    //     thisJobContainer.appendChild(createNewElement('DIV', null, 'class', 'data-container'));
+    //     const dataContainer = document.querySelectorAll('.data-container')
+    //     const thisDataContainer = dataContainer[index]
+    //     thisDataContainer.appendChild(createNewElement('DIV', offer.companyName, 'class', 'company-name'));
+    //     thisDataContainer.append(createNewElement('DIV', offer.jobName, 'class', 'job-request'));
+    //     thisDataContainer.append(createNewElement('DIV', offer.details, 'class', 'job-details')); 
+    //     thisJobContainer.append(createNewElement('DIV', null, 'class', 'filter-container'));
+    //     const filterContainer = document.querySelectorAll('.filter-container');
+    //     const thisFilterContainer = filterContainer[index];
+    //     offer.filters.forEach(filter => {
+    //         thisFilterContainer.appendChild(createNewElement('DIV', filter, 'class', 'filter-container-div'));
+    //     });
+    // });
 
     /*
     // FOR EACH PER CREAR EL MENU DELS FILTRES
