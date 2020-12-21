@@ -28,50 +28,63 @@ body {
 
 .container{
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
     width: 100%;
+    border: red solid 3px;
 }
 
 .job-container {
     display:flex; 
+
     
     width: 80%;
     padding:15px; 
     box-sizing: border-box;    
     background-color:white;
+    border: solid green 3px;
 }
 .data-container{
     display: flex;
     flex-direction: column;
-    border: 1px red solid;
+    
     justify-content: center;
     align-items: flex-start;
     justify-content: space-evenly;  
-    width: 20%;  
+    width: 30%;  /* original 20%*/
     
 }
 .image-container{
-    width: 10%;
+    width: 10%; /*original 10%*/
+    border: 3px solid rgb(5, 163, 255); 
 }
 
 .filter-container{
-    border: 1px red solid;
+    border: 3px rgb(224, 12, 178) solid;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;    
+    /* width: 70%; comentado */
+}
+
+.filter-container-div{
+    color:#5BA4A4  ;
+    /* background-color: #EFFAFA ;  comentado*/
+    padding:10px;
+    font-weight: bold;
+    width: 50%; /*original max-width*/
+    /*afegit*/
+    font-size: 0.7em;
+   
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap :15px;
-    width: 70%;
-}
-.filter-container-div{
-    color:#5BA4A4  ;
-    background-color: #EFFAFA ;
-    padding:10px;
-    font-weight: bold;
-    width: max-content;
+    
 }
 .company-name{
     font-weight: bold;
-    font-size:0.8em;
+    font-size:0.8em; /* original 0.8*/
     color: #5BA4A4;
 }
 .job-request{
@@ -79,7 +92,7 @@ body {
 }
 .job-details{
     font-weight: lighter;
-    font-size: 0.9em;
+    font-size: 0.4em; /* original 0.9*/
     color: lightgrey;
 }
 

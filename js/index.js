@@ -21,7 +21,8 @@
                 date: '1d ago',
                 workingDay: 'Full Time',
                 location: 'USA Only'
-            }
+            },
+            tecno:[" Front End "," Senior "," HTML "," CSS "," Javascript "],
         },
 
         {
@@ -66,33 +67,84 @@
     ];
 
 
-    filters.forEach(filter => {
-        
+    // FOR EACH PER CREAR EL MENU DELS FILTRES
+    filters.forEach(filter => {       
         const node = document.querySelector('#filter-menu');
         const newDiv = node.appendChild(document.createElement('div'));
         newDiv.innerHTML = `${filter}`  
         newDiv.setAttribute('class', 'filter-container-div')
-      });
+    });
 
+    
     jobOffers.forEach(jobs =>{
         const container = document.querySelector(".container")
+        const newCont = document.createElement("div")             
+        container.appendChild(document.createElement("div")).setAttribute("class", "job-container" )  ;
+        macroDiv() 
+        
+                         
+    });
+    
+    //FUNCIO QUE CREA EL DIV "complet" QUE NECSITEM DINS DE CADA JOB-OFFER
+    function macroDiv(){        
+
+        //image-container
+        function imageFunction(){
+        const jobContainer = document.querySelector(".job-container")
         const newCont = document.createElement("div")       
+        const imageContainer = newCont.setAttribute("class", "image-container")
+        jobContainer.appendChild(newCont)
+        }
+        function dataFunction(){
+        //data-container
+        const jobContainer = document.querySelector(".job-container")
+        const newCont = document.createElement("div")        
+        const dataContainer = newCont.setAttribute("class", "data-container")
+        jobContainer.appendChild(newCont)
         
-        newCont.setAttribute("class", "job-container")
-        const jobContainer = newCont.setAttribute("class", "job-container")
+            function createCompanyNameDiv(){
+                const dataContainer = document.querySelector(".data-container")
+                const newCont = document.createElement("div")
+                const dataContainer2 = newCont.setAttribute("class", "company-name")
+                dataContainer.appendChild(newCont)
+                newCont.textContent = `${jobOffers[0].companyName}`
+            }
+            function createJobRequestDiv(){
+                const dataContainer = document.querySelector(".data-container")
+                const newCont = document.createElement("div")
+                const dataContainer2 = newCont.setAttribute("class", "job-request")
+                dataContainer.appendChild(newCont)
+                newCont.textContent = `${jobOffers[0].jobName}`
+            }
+            function createJobDetailsDiv(){
+                const dataContainer = document.querySelector(".data-container")
+                const newCont = document.createElement("div")
+                const dataContainer2 = newCont.setAttribute("class", "job-details")
+                dataContainer.appendChild(newCont)
+                newCont.textContent = `${jobOffers[0].details.date}`+`${jobOffers[0].details.workingDay}`+`${jobOffers[0].details.location}`
+            }
+            createCompanyNameDiv()
+            createJobRequestDiv()
+            createJobDetailsDiv()
+       }
+        function filterFunction(){
+       //filter-container
+        const jobContainer = document.querySelector(".job-container")
+        const newCont = document.createElement("div")        
+        const filterContainer = newCont.setAttribute("class", "filter-container-div")
+        jobContainer.appendChild(newCont)
+        newCont.innerHTML = `${jobOffers[0].tecno[0]}`+`${jobOffers[0].tecno[1]}`+`${jobOffers[0].tecno[2]}`+`${jobOffers[0].tecno[3]}`+`${jobOffers[0].tecno[4]}`
+        }
+    imageFunction()
+    dataFunction()
+    filterFunction()        
+    }
+   
+    
 
-        const imageContainer = jobContainer.appendChild(newCont.setAttribute("class", "image-container"))
-        console.log(imageContainer)
- 
-
-       
-       
-
-        
-        
-    })
-        
     
     
 
+
+    
 })();
