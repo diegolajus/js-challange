@@ -10,6 +10,7 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    padding-bottom: 50px;
 }
 
 #header {
@@ -26,44 +27,55 @@ body {
     background-size: cover;
 }
 
-.job-item {
-    display:flex;    
+#jobs-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     width: 80%;
+}
+
+.job-container {
+    display: grid; 
+    grid-template-columns: 15% 35% 50%;
+    margin: 10px;
+    width: 100%;
     padding:15px; 
-    box-sizing: border-box;   
-    
+    box-sizing: border-box;    
     background-color:white;
 }
 .data-container {
     display: flex;
     flex-direction: column;
+    padding: 10px;
     justify-content: center;
     align-items: flex-start;
     justify-content: space-evenly;  
-    width: 20%;  
     
 }
-.image-container {
-    width: 10%;
-}
+.image-container{
+    margin: 10px;
+    text-align: center;
+}   
 
-.filter-container {
+.filter-container{
     display: flex;
     justify-content: flex-end;
-    align-items: center;
-    gap :15px;
-    width: 70%;
+    align-items: center;    
+    gap: 5px;
 }
-.filter-container-div {
+
+.filter-container-div{
     color:#5BA4A4  ;
-    background-color: #EFFAFA ;
+    background-color: #EFFAFA; 
     padding:10px;
     font-weight: bold;
-    width: max-content;
+    max-width: 50%; /*original max-width*/
+    font-size: 0.7em;
 }
 .company-name {
     font-weight: bold;
-    font-size:0.8em;
+    font-size:0.8em; /* original 0.8*/
     color: #5BA4A4;
 }
 .job-request {
@@ -71,7 +83,7 @@ body {
 }
 .job-details {
     font-weight: lighter;
-    font-size: 0.9em;
+    font-size: 0.8em; /* original 0.9*/
     color: lightgrey;
 }
 

@@ -17,21 +17,61 @@
         {
             companyName: 'Photosnap',
             jobName: 'Senior Frontend Developer',
-            details: {
-                date: '1d ago',
-                workingDay: 'Full Time',
-                location: 'USA Only'
-            }
+            details: [
+                { date: '1d ago' },
+                { workingDay: 'Full Time' },
+                { location: 'USA Only' }
+            ],
+            filters: [" Front End ", " Senior ", " HTML ", " CSS ", " Javascript "],
+            companyLogo: './images/photosnap.svg'
         },
 
         {
             companyName: 'Manage',
             jobName: 'Fullstack Developer',
-            details: {
-                date: '1d ago',
-                workingDay: 'Part Time',
-                location: 'Remote'
-            }
+            details: [
+                { date: '1d ago' },
+                { workingDay: 'Part Time' },
+                { location: 'Remote' }
+            ],
+            filters: [" Front End ", " Senior ", " HTML ", " CSS ", " Javascript "],
+            companyLogo: './images/manage.svg'
+        },
+
+        {
+            companyName: 'Account',
+            jobName: 'Junior Front Developer',
+            details: [
+                { date: '2d ago' },
+                { workingDay: 'Part Time' },
+                { location: 'USA Only' }
+            ],
+            filters: [" Front End ", " Senior ", " HTML ", " CSS ", " Javascript "],
+            companyLogo: './images/account.svg'
+        },
+
+        {
+            companyName: 'MyHome',
+            jobName: 'Junior Front Developer',
+            details: [
+                { date: '5d ago' },
+                { workingDay: 'Contract' },
+                { location: 'USA Only' }
+            ],
+            filters: [" Front End ", " Senior ", " HTML ", " CSS ", " Javascript "],
+            companyLogo: './images/myhome.svg'
+        },
+
+        {
+            companyName: 'Loop Studios',
+            jobName: 'Software Engineer',
+            details: [
+                { date: '1w ago' },
+                { workingDay: 'Full Time' },
+                { location: 'WorldWide' }
+            ],
+            filters: [" Front End ", " Senior ", " HTML ", " CSS ", " Javascript "],
+            companyLogo: './images/loop-studios.svg'
         }
     ];
 
@@ -39,20 +79,30 @@
 
         const newElement = document.createElement(type);
 
-        if (attr && value && attr === 'class') {
+        if (attr && value) {
             newElement.setAttribute(attr, value);
         }
 
-        if (content) {
+        if (typeof (content) === 'string') {
             newElement.innerHTML = content;
         }
 
-        return newElement;
-    }
+        if (typeof (content === 'object')) {
+            if (value === 'job-details') {
+                let jobDetails = '';
+                content.forEach((el, index) => {
+                    const key = Object.keys(el)
+                    if (index === 0) {
+                        return jobDetails = el[key];
+                    } else {
+                        return jobDetails = jobDetails + ` · ${el[key]}`;
+                    }
+                })
 
-    const createJobDiv = (props) => {
-        const imageDiv = createNewElement('DIV', null, 'class', 'image-container');
-        imageDiv.appendChild(createNewElement('IMG'))
+                newElement.innerHTML = jobDetails;
+            }
+        }
+        return newElement;
     }
 
     filters.forEach(filter => {
@@ -60,11 +110,116 @@
         filterMenu.appendChild(createNewElement('DIV', filter, 'class', 'filter-container-div'));
     });
 
-    jobOffers.forEach(offer => {
-        const jobsContainer = document.querySelector('#jobs-container');
-        jobsContainer.appendChild(createJobDiv(offer));
+    
 
+    jobOffers.forEach((offer, index) => {
+        const jobsContainer = document.querySelector('#jobs-container')
+        jobsContainer.append(createNewElement('DIV', null, 'class', 'job-container'));
+        const jobContainer = document.querySelectorAll('.job-container')
+        const thisJobContainer = jobContainer[index]
+        thisJobContainer.appendChild(createNewElement('DIV', null, 'class', 'image-container'));
+        const imageContainer = document.querySelectorAll('.image-container');
+        const thisImageContainer = imageContainer[index];
+        thisImageContainer.appendChild(createNewElement('IMG', null, 'src', offer.companyLogo))
+        thisJobContainer.appendChild(createNewElement('DIV', null, 'class', 'data-container'));
+        const dataContainer = document.querySelectorAll('.data-container')
+        const thisDataContainer = dataContainer[index]
+        thisDataContainer.appendChild(createNewElement('DIV', offer.companyName, 'class', 'company-name'));
+        thisDataContainer.append(createNewElement('DIV', offer.jobName, 'class', 'job-request'));
+        thisDataContainer.append(createNewElement('DIV', offer.details, 'class', 'job-details')); 
+        thisJobContainer.append(createNewElement('DIV', null, 'class', 'filter-container'));
+        const filterContainer = document.querySelectorAll('.filter-container');
+        const thisFilterContainer = filterContainer[index];
+        offer.filters.forEach(filter => {
+            thisFilterContainer.appendChild(createNewElement('DIV', filter, 'class', 'filter-container-div'));
+        });
     });
+
+
+
+    /*
+    // FOR EACH PER CREAR EL MENU DELS FILTRES
+    filters.forEach(filter => {
+        const node = document.querySelector('#filter-menu');
+        const newDiv = node.appendChild(document.createElement('div'));
+        newDiv.innerHTML = `${filter}`
+        newDiv.setAttribute('class', 'filter-container-div')
+    });
+
+
+    jobOffers.forEach(jobs => {
+        const container = document.querySelector(".container");
+        newCont = container.appendChild(document.createElement("div"));
+        newCont.setAttribute("class", "job-container");
+        document.querySelector('.job-container').append(macroDiv())
+    */
+
+    //FUNCIO QUE CREA EL DIV "complet" QUE NECSITEM DINS DE CADA JOB-OFFER
+    /*
+    function macroDiv() {
+
+        //image-container
+        function imageFunction() {
+            const jobContainer = document.querySelector(".job-container")
+            const newCont = document.createElement("div")
+            const imageContainer = newCont.setAttribute("class", "image-container")
+            jobContainer.appendChild(newCont)
+        }
+        function dataFunction() {
+            //data-container
+            const jobContainer = document.querySelector(".job-container")
+            const newCont = document.createElement("div")
+            const dataContainer = newCont.setAttribute("class", "data-container")
+            jobContainer.appendChild(newCont)
+
+            function createCompanyNameDiv() {
+                const dataContainer = document.querySelector(".data-container")
+                const newCont = document.createElement("div")
+                const dataContainer2 = newCont.setAttribute("class", "company-name")
+                dataContainer.appendChild(newCont)
+                return newCont.textContent = `${jobOffers[0].companyName}`
+            }
+            function createJobRequestDiv() {
+                const dataContainer = document.querySelector(".data-container")
+                const newCont = document.createElement("div")
+                const dataContainer2 = newCont.setAttribute("class", "job-request")
+                dataContainer.appendChild(newCont)
+                return newCont.textContent = `${jobOffers[0].jobName}`
+            }
+            function createJobDetailsDiv() {
+                const dataContainer = document.querySelector(".data-container")
+                const newCont = document.createElement("div")
+                const dataContainer2 = newCont.setAttribute("class", "job-details")
+                dataContainer.appendChild(newCont)
+                return newCont.textContent = `${jobOffers[0].details.date}` + `${jobOffers[0].details.workingDay}` + `${jobOffers[0].details.location}`
+            }
+            return (
+                createCompanyNameDiv(),
+                createJobRequestDiv(),
+                createJobDetailsDiv()
+            )
+
+        }
+        function filterFunction() {
+            //filter-container
+            const jobContainer = document.querySelector(".job-container")
+            const newCont = document.createElement("div")
+            const filterContainer = newCont.setAttribute("class", "filter-container-div")
+            jobContainer.appendChild(newCont)
+            newCont.innerHTML = `${jobOffers[0].tecno[0]}` + `${jobOffers[0].tecno[1]}` + `${jobOffers[0].tecno[2]}` + `${jobOffers[0].tecno[3]}` + `${jobOffers[0].tecno[4]}`
+        }
+        return (
+            imageFunction(),
+            dataFunction(),
+            filterFunction()
+        )
+
+    }
+    */
+
+
+
+
 
 
 
