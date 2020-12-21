@@ -26,7 +26,7 @@ body {
     background-size: cover;
 }
 
-.container {
+.job-item {
     display:flex;    
     width: 80%;
     padding:15px; 
@@ -34,44 +34,42 @@ body {
     
     background-color:white;
 }
-.data-container{
+.data-container {
     display: flex;
     flex-direction: column;
-    border: 1px red solid;
     justify-content: center;
     align-items: flex-start;
     justify-content: space-evenly;  
     width: 20%;  
     
 }
-.image-container{
+.image-container {
     width: 10%;
 }
 
-.filter-container{
-    border: 1px red solid;
+.filter-container {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     gap :15px;
     width: 70%;
 }
-.filter-container-div{
+.filter-container-div {
     color:#5BA4A4  ;
     background-color: #EFFAFA ;
     padding:10px;
     font-weight: bold;
     width: max-content;
 }
-.company-name{
+.company-name {
     font-weight: bold;
     font-size:0.8em;
     color: #5BA4A4;
 }
-.job-request{
+.job-request {
     font-weight: bold;
 }
-.job-details{
+.job-details {
     font-weight: lighter;
     font-size: 0.9em;
     color: lightgrey;

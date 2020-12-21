@@ -35,15 +35,38 @@
         }
     ];
 
-    filters.map(filter => {
-        console.log(filter);
-        const node = document.querySelector('#filter-menu');
-        const newDiv = node.appendChild(document.createElement('div'));
-        newDiv.innerHTML = `${filter}`  
-        newDiv.setAttribute('class', 'filter-container-div')
-      });
-        
-    
+    const createNewElement = (type, content, attr, value) => {
+
+        const newElement = document.createElement(type);
+
+        if (attr && value && attr === 'class') {
+            newElement.setAttribute(attr, value);
+        }
+
+        if (content) {
+            newElement.innerHTML = content;
+        }
+
+        return newElement;
+    }
+
+    const createJobDiv = (props) => {
+        const imageDiv = createNewElement('DIV', null, 'class', 'image-container');
+        imageDiv.appendChild(createNewElement('IMG'))
+    }
+
+    filters.forEach(filter => {
+        const filterMenu = document.querySelector('#filter-menu');
+        filterMenu.appendChild(createNewElement('DIV', filter, 'class', 'filter-container-div'));
+    });
+
+    jobOffers.forEach(offer => {
+        const jobsContainer = document.querySelector('#jobs-container');
+        jobsContainer.appendChild(createJobDiv(offer));
+
+    });
+
+
 
 
 })();
